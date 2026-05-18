@@ -88,7 +88,7 @@ class ProfileService {
                 quantity: 1,
             }],
             mode: 'payment',
-            success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
+            success_url: `${successUrl}&session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: cancelUrl,
             metadata: { userId: userId.toString() },
             customer_email: user.email,
