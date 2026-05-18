@@ -35,7 +35,10 @@ export default function ProfilePage() {
   const { fileInputRef, avatarPreview, avatarFile, avatarAlert, avatarLoading, handleAvatarFile, handleAvatarUpload } = useAvatarUpload(setProfile);
   const { depositModal, setDepositModal, depositAmount, setDepositAmount, depositAlert, depositLoading, subAlert, subLoading, stripeLoading, handleDeposit, handleSubscribe, handleStripeSubscribe } = useWallet(setProfile);
 
-  const [activeTab, setActiveTab] = useState('info');
+  const [activeTab, setActiveTab] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('stripe') ? 'wallet' : 'info';
+  });
 
   if (loading) return <PageLoader />;
   if (!profile) return null;
