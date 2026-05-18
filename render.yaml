@@ -2,8 +2,9 @@ services:
   - type: web
     name: tictactoang-deploy
     env: node
-    buildCommand: cd frontend && npm install && npm run build && cd ../backend && npm install
-    startCommand: node backend/server.js
+    rootDir: backend
+    buildCommand: cd ../frontend && npm install && npm run build && cd ../backend && npm install
+    startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production
