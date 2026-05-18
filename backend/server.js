@@ -35,7 +35,7 @@ app.use('/api/game',    gameRoutes);
 // Serve React frontend in production
 const distPath = path.join(__dirname, '../frontend/dist');
 app.use(express.static(distPath));
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
     res.sendFile(path.join(distPath, 'index.html'));
 });
 
