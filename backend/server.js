@@ -32,7 +32,12 @@ app.use('/api/admin',   adminRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/game',    gameRoutes);
 
-app.get('/', (req, res) => res.send('TicTacToang API is running...'));
+// Serve React frontend in production
+const distPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(distPath));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+});
 
 const server = http.createServer(app);
 initSocket(server);
